@@ -51,16 +51,16 @@ def create_task():
 				if score.isnumeric():
 					if int(score) >= 60:
 						subjectCodeArray.append(code)
-	print("================================================")
-	count_hcm_credit(subjectCodeArray)
-	print("================================================")
-	result = '123'
+
+	result = count_hcm_credit(subjectCodeArray)
+	
 	return Response(result, mimetype='text/plain')
 
 def count_hcm_credit(subjectCodes):
 	hcmCredit = get_hcm_credit()
 	hcmCreditData = {}
 
+	result = ''
 	haveToTotal = 0
 	majorTotal = 0
 	optionTotal = 0
@@ -88,20 +88,23 @@ def count_hcm_credit(subjectCodes):
 			generalSubjectCredit.append(mySubjectCode)
 
 	if haveToTotal < 7:
-		print("軍訓、體育、社會關懷實作尚有未完成")
+		result += "軍訓、體育、社會關懷實作尚有未完成"
 	if majorTotal < 76:
-		print("必修尚缺" + str(majorTotal - 76) + " 學分")
+		result += "必修尚缺" + str(majorTotal - 76) + " 學分"
 	if optionTotal < 12:
-		print("選修尚缺 " + str(optionTotal - 12) + " 學分")
+		result += "選修尚缺 " + str(optionTotal - 12) + " 學分"
 	if fourChooseTwoCount < 2:
-		print("四選二尚缺 " + str(2 - fourChooseTwoCount) + " 門")
+		result += "四選二尚缺 " + str(2 - fourChooseTwoCount) + " 門"
 
-	count_general_credit(generalSubjectCredit)
+	result += count_general_credit(generalSubjectCredit)
+
+	return result
 
 def count_general_credit(generalSubjectCredit):
 	generalCredit = get_general_credit()
 	generalCreditData = {}
 
+	result = ''
 	for credit in generalCredit:
 		generalCreditData.update(credit)
 
@@ -169,11 +172,11 @@ def count_general_credit(generalSubjectCredit):
 				otherTotal += subjectCredit
 
 	if type1SocialTotal < 6:
-		print("通識-社會科學核心課程尚缺 " + str(6-type1SocialTotal) + " 學分")
+		result += "通識-社會科學核心課程尚缺 " + str(6-type1SocialTotal) + " 學分"
 	if type1ArtTotal < 6:
-		print("通識-人文藝術核心課程尚缺 " + str(6-type1SocialTotal) + " 學分")
+		result += "通識-人文藝術核心課程尚缺 " + str(6-type1SocialTotal) + " 學分"
 	if type3EngCount < 6:
-		print("通識-英文領域尚缺 " + str(6-type3EngCount) + " 學分")
+		result += "通識-英文領域尚缺 " + str(6-type3EngCount) + " 學分"
 
 	checkType2List = [
 		type2ArtCount, type2HistoryCount, type2SocialScienceCount,
@@ -185,9 +188,9 @@ def count_general_credit(generalSubjectCredit):
 		if type2Count == 0:
 			checkRun+=1
 	if checkRun >=3:
-		print("通識-多元課程尚缺" + str(3 - ( 5- checkRun )) + "個領域（至少選修3領域)")
+		result += "通識-多元課程尚缺" + str(3 - ( 5- checkRun )) + "個領域（至少選修3領域)"
 
-
+	return result
 
 if __name__ == '__main__':
     app.run(debug=True)
