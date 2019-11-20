@@ -108,6 +108,30 @@ def count_general_credit(generalSubjectCredit):
 	for credit in generalCredit:
 		generalCreditData.update(credit)
 
+	type1SocialCount = 0
+	type1SocialTotal = 0
+
+	type1ArtCount = 0
+	type1ArtTotal = 0
+
+	type2ArtCount = 0
+	type2ArtTotal = 0
+
+	type2HistoryCount = 0
+	type2HistoryTotal = 0
+
+	type2SocialScienceCount = 0
+	type2SocialScienceTotal = 0
+
+	type2BioScienceCount = 0
+	type2BioScienceTotal = 0
+
+	type2MathCount = 0
+	type2MathTotal = 0
+
+	type3EngCount = 0
+	otherTotal = 0
+	
 	for mySubjectCode in generalSubjectCredit:
 		if mySubjectCode in generalCreditData:
 
@@ -117,30 +141,6 @@ def count_general_credit(generalSubjectCredit):
 			except:
 				pass
 			subjectCredit = int(generalCreditData[mySubjectCode][0]['credit'])
-
-			type1SocialCount = 0
-			type1SocialTotal = 0
-
-			type1ArtCount = 0
-			type1ArtTotal = 0
-
-			type2ArtCount = 0
-			type2ArtTotal = 0
-
-			type2HistoryCount = 0
-			type2HistoryTotal = 0
-
-			type2SocialScienceCount = 0
-			type2SocialScienceTotal = 0
-
-			type2BioScienceCount = 0
-			type2BioScienceTotal = 0
-
-			type2MathCount = 0
-			type2MathTotal = 0
-
-			type3EngCount = 0
-			otherTotal = 0
 
 			if subjectType == '1':
 				if subjectCategory == '社會':
