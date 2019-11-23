@@ -1,0 +1,7 @@
+{
+  "name": "Flask on Heroku",
+  "description": "Flask web app to Heroku.",
+  "image": "heroku/python",
+  "repository": "https://git.heroku.com/graduate-tool",
+  "keywords": ["python", "flask" ]
+}
