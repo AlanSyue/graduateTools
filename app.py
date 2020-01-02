@@ -60,7 +60,7 @@ def count_hcm_credit(subjectCodes):
 	hcmCredit = get_hcm_credit()
 	hcmCreditData = {}
 
-	result = ''
+	result = '<ul>'
 	haveToTotal = 0
 	majorTotal = 0
 	optionTotal = 0
@@ -88,13 +88,13 @@ def count_hcm_credit(subjectCodes):
 			generalSubjectCredit.append(mySubjectCode)
 
 	if haveToTotal < 7:
-		result += "軍訓、體育、社會關懷實作尚有未完成"
+		result += "<li>軍訓、體育、社會關懷實作尚有未完成</li></li><br />"
 	if majorTotal < 76:
-		result += "必修尚缺" + str(majorTotal - 76) + " 學分"
+		result += "<li>必修尚缺" + str(majorTotal - 76) + " 學分</li><br />"
 	if optionTotal < 12:
-		result += "選修尚缺 " + str(optionTotal - 12) + " 學分"
+		result += "<li>選修尚缺 " + str(optionTotal - 12) + " 學分</li><br />"
 	if fourChooseTwoCount < 2:
-		result += "四選二尚缺 " + str(2 - fourChooseTwoCount) + " 門"
+		result += "<li>四選二尚缺 " + str(2 - fourChooseTwoCount) + " 門</li><br />"
 
 	result += count_general_credit(generalSubjectCredit)
 
@@ -172,11 +172,11 @@ def count_general_credit(generalSubjectCredit):
 				otherTotal += subjectCredit
 
 	if type1SocialTotal < 6:
-		result += "通識-社會科學核心課程尚缺 " + str(6-type1SocialTotal) + " 學分"
+		result += "<li>通識-社會科學核心課程尚缺 " + str(6-type1SocialTotal) + " 學分</li><br />"
 	if type1ArtTotal < 6:
-		result += "通識-人文藝術核心課程尚缺 " + str(6-type1SocialTotal) + " 學分"
+		result += "<li>通識-人文藝術核心課程尚缺 " + str(6-type1SocialTotal) + " 學分</li><br />"
 	if type3EngCount < 6:
-		result += "通識-英文領域尚缺 " + str(6-type3EngCount) + " 學分"
+		result += "<li>通識-英文領域尚缺 " + str(6-type3EngCount) + " 學分</li><br />"
 
 	checkType2List = [
 		type2ArtCount, type2HistoryCount, type2SocialScienceCount,
@@ -188,8 +188,9 @@ def count_general_credit(generalSubjectCredit):
 		if type2Count == 0:
 			checkRun+=1
 	if checkRun >=3:
-		result += "通識-多元課程尚缺" + str(3 - ( 5- checkRun )) + "個領域（至少選修3領域)"
+		result += "<li>通識-多元課程尚缺 " + str(3 - ( 5- checkRun )) + " 個領域（至少選修 3 領域)</li><br />" 
 
+	result += "</ul>"
 	return result
 
 if __name__ == '__main__':
