@@ -62,24 +62,24 @@ def count_hcm_credit(subjectData, subjectCodes):
 			generalSubjectCredit.append(mySubjectCode)
 
 	if haveToTotal < 7:
-		result += "<li>軍訓、體育、社會關懷實作尚有未完成</li></li><br />"
+		result += "<li><span style='color:red'>軍訓、體育、社會關懷實作尚有未完成</span></li></li><br />"
 
 	result += "<li>必修學分共: " + str(majorTotal) + " 學分</li><br />"
 	if majorTotal < 76:
-		result += "<li>必修尚缺" + str( 76 - majorTotal ) + " 學分</li><br />"
+		result += "<li><span style='color:red'>必修尚缺 " + str( 76 - majorTotal ) + " 學分</span></li><br />"
 
 	result += "<li>選修學分共: " + str(optionTotal) + " 學分</li><br />"
 	if optionTotal < 12:
-		result += "<li>選修尚缺 " + str( 12 - optionTotal ) + " 學分</li><br />"
+		result += "<li><span style='color:red'>選修尚缺 " + str( 12 - optionTotal ) + " 學分</span></li><br />"
 
 	result += "<li>四選二學分共: " + str(fourChooseTwoTotal) + " 學分</li><br />"
 	if fourChooseTwoCount < 2:
-		result += "<li>四選二尚缺 " + str(2 - fourChooseTwoCount) + " 門</li><br />"
+		result += "<li><span style='color:red'>四選二尚缺 " + str(2 - fourChooseTwoCount) + " 門</span></li><br />"
 
 	totalCredit = majorTotal + optionTotal + fourChooseTwoTotal
 	returnData = count_general_credit(subjectData, generalSubjectCredit)
 	totalCredit = totalCredit + int(returnData[1])
-	result = '<ul><li>畢業總學分為:' + str(totalCredit) + " </li><br />" + result + returnData[0];
+	result = '<ul><li>畢業總學分為: ' + str(totalCredit) + " </li><br />" + result + returnData[0];
 
 	return result
 
@@ -148,7 +148,7 @@ def count_general_credit(subjectData, generalSubjectCredit):
 				elif subjectCategory == '生命科學':
 					type2BioScienceCount += 1
 					type2BioScienceTotal += int(subjectData[mySubjectCode])
-				elif subjectCategory == '物質科學與數理邏輯':
+				elif subjectCategory == '物質科學與數理邏輯':
 					type2MathCount += 1
 					type2MathTotal += int(subjectData[mySubjectCode])
 				elif subjectCategory == '科技與應用':
@@ -162,15 +162,15 @@ def count_general_credit(subjectData, generalSubjectCredit):
 
 	result += "<li>通識-社會科學核心課程共 " + str( type1SocialTotal ) + " 學分</li><br />"
 	if type1SocialTotal < 6:
-		result += "<li>通識-社會科學核心課程尚缺 " + str( 6 - type1SocialTotal ) + " 學分</li><br />"
+		result += "<li><span style='color:red'>通識-社會科學核心課程尚缺 " + str( 6 - type1SocialTotal ) + " 學分</span></li><br />"
 
 	result += "<li>通識-人文藝術核心課程共 " + str( type1ArtTotal ) + " 學分</li><br />"
 	if type1ArtTotal < 6:
-		result += "<li>通識-人文藝術核心課程尚缺 " + str( 6 - type1SocialTotal ) + " 學分</li><br />"
+		result += "<li><span style='color:red'>通識-人文藝術核心課程尚缺 " + str( 6 - type1SocialTotal ) + " 學分</span></li><br />"
 
 	result += "<li>通識-英文領域共 " + str( type3EngCount ) + " 學分</li><br />"
 	if type3EngCount < 6:
-		result += "<li>通識-英文領域尚缺 " + str(6-type3EngCount) + " 學分</li><br />"
+		result += "<li><span style='color:red'>通識-英文領域尚缺 " + str(6-type3EngCount) + " 學分</span></li><br />"
 
 	checkType2List = [
 		type2ArtCount, type2HistoryCount, type2SocialScienceCount,
@@ -179,7 +179,7 @@ def count_general_credit(subjectData, generalSubjectCredit):
 
 	Type2AreaNameList = [
 		'文學與藝術', '哲學與歷史', '社會科學',
-		'生命科學', '物質科學與數理邏輯', '科技與應用'
+		'生命科學', '物質科學與數理邏輯', '科技與應用'
 	]
 
 	checkRun = 0 # 檢查修過幾個領域
@@ -196,10 +196,10 @@ def count_general_credit(subjectData, generalSubjectCredit):
 		runCount += 1
 
 	if checkRun >= 3:
-		result += "<li>通識-多元課程已修 " + '、'.join(passType2Area) + "，尚缺 " + str( 3 - ( len(checkType2List) - checkRun )) + " 個領域（至少選修3領域)</li><br />"
+		result += "<li>通識-多元課程已修 " + '、'.join(passType2Area) + "，<span style='color:red'>尚缺 " + str( 3 - ( len(checkType2List) - checkRun )) + " 個領域（至少選修3領域)</span></li><br />"
 	
 	result += "</ul>"
-	generalTotalCredit = type1SocialTotal + type1ArtTotal + type3EngCount + type2Total
+	generalTotalCredit = type1SocialTotal + type1ArtTotal + type3EngCount + type2Total + otherTotal
 	if generalTotalCredit > 34:
 		generalTotalCredit = 34
 
