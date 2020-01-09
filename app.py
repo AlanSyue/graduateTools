@@ -56,7 +56,7 @@ def count_hcm_credit(subjectData, subjectCodes):
 			elif subjectType == '2':
 				optionTotal += int(subjectData[mySubjectCode])
 			elif subjectType == '3':
-				fourChooseTwoCount +=0
+				fourChooseTwoCount += 1
 				fourChooseTwoTotal += int(subjectData[mySubjectCode])
 		else:
 			generalSubjectCredit.append(mySubjectCode)
