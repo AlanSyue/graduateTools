@@ -139,7 +139,7 @@ def count_general_credit(subjectData, generalSubjectCredit):
 				if subjectCategory == '文學與藝術':
 					type2ArtCount += 1
 					type2ArtTotal += int(subjectData[mySubjectCode])
-				elif subjectCategory == '哲學與歷史':
+				elif subjectCategory == '哲學與歷史':
 					type2HistoryCount += 1
 					type2HistoryTotal += int(subjectData[mySubjectCode])
 				elif subjectCategory == '社會科學':
@@ -178,7 +178,7 @@ def count_general_credit(subjectData, generalSubjectCredit):
 	]
 
 	Type2AreaNameList = [
-		'文學與藝術', '哲學與歷史', '社會科學',
+		'文學與藝術', '哲學與歷史', '社會科學',
 		'生命科學', '物質科學與數理邏輯', '科技與應用'
 	]
 
@@ -199,7 +199,7 @@ def count_general_credit(subjectData, generalSubjectCredit):
 		result += "<li>通識-多元課程已修 " + '、'.join(passType2Area) + "，<span style='color:red'>尚缺 " + str( 3 - ( len(checkType2List) - checkRun )) + " 個領域（至少選修3領域)</span></li><br />"
 	
 	result += "</ul>"
-	generalTotalCredit = type1SocialTotal + type1ArtTotal + type3EngCount + type2Total + otherTotal
+	generalTotalCredit = type1SocialTotal + type2HistoryTotal + type1ArtTotal + type3EngCount + type2Total + otherTotal
 	if generalTotalCredit > 34:
 		generalTotalCredit = 34
 
