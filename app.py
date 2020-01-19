@@ -3,8 +3,6 @@ from flask import Flask
 from flask import request
 from flask import jsonify
 from flask import Response
-import requests
-from bs4 import BeautifulSoup
 import json
 
 def get_hcm_credit():
