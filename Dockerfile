@@ -10,4 +10,4 @@ RUN pip install -r requirements.txt
 
 COPY . /app
 
-CMD ["gunicorn", "-k", "gevent", "-b", "0.0.0.0:9000", "app:app"]
+CMD ["python", "app.py"]

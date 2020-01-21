@@ -204,5 +204,5 @@ def count_general_credit(subjectData, generalSubjectCredit):
 	return [result, generalTotalCredit]
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=9000)
 
