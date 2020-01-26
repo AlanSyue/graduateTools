@@ -4,3 +4,4 @@ Flask==1.0.2
 gunicorn==19.5.0
 gevent==1.4.0
 pre-commit==1.21.0
+flake8==3.7.9
